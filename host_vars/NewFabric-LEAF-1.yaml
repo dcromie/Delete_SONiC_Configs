@@ -92,11 +92,11 @@ sonic_interfaces:
     mtu: 9216
     name: PortChannel10
 sonic_l2_interfaces:
-  - name: Eth1/1
+  - name: Eth1/6
     trunk:
       allowed_vlans:
         - vlan: 200
-  - name: Eth1/2
+  - name: Eth1/7
     trunk:
       allowed_vlans:
         - vlan: 200
