@@ -43,7 +43,7 @@ sonic_bgp_neighbors:
     neighbors:
       - neighbor: Eth1/1
         peer_group: spine-leaf
-      - neighbor: Eth1/1
+      - neighbor: Eth1/2
         peer_group: spine-leaf
     peer_group:
       - '{{sonic_bgp_spineleaf_peergroup}}'
