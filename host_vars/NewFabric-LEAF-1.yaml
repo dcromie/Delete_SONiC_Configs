@@ -60,22 +60,28 @@ sonic_interfaces:
   - description: '"Uplink"'
     enabled: true
     name: Eth1/1
-  - description: '"Uplink"'
+  - description: '"Uplink to NewFabric-SPINE-1 Eth1/1"'
     enabled: true
     name: Eth1/2
-  - description: '"Node-01_eth0-NDC1-25G-1"'
-    enabled: true
-    name: Eth1/5
-  - description: '"MCLAG to NewFabric-LEAF-2 Eth1/47"'
-    enabled: true
-    name: Eth1/47
-  - description: '"MCLAG to NewFabric-LEAF-2 Eth1/48"'
-    enabled: true
-    name: Eth1/48
   - description: '"Uplink to NewFabric-SPINE-2 Eth1/1"'
     enabled: true
+    name: Eth1/5
+  - description: '"Node-01_eth0-NDC1-25G-1"'
+    enabled: true
+    name: Eth1/8
+  - description: '"MCLAG to NewFabric-LEAF-2 Eth1/47"'
+    enabled: true
+    name: Eth1/9
+  - description: '"MCLAG to NewFabric-LEAF-2 Eth1/48"'
+    enabled: true
+    name: Eth1/47
+  - description: '""'
+    enabled: true
+    name: Eth1/48
+  - description: '""'
+    enabled: true
     name: Eth1/55
-  - description: '"Uplink to NewFabric-SPINE-1 Eth1/1"'
+  - description: '""'
     enabled: true
     name: Eth1/56
   - description: router-id
@@ -126,13 +132,13 @@ sonic_l3_interfaces:
 sonic_lag_interfaces:
   - members:
       interfaces:
-        - member: Eth1/5
+        - member: Eth1/8
     mode: lacp
     name: PortChannel10
   - members:
       interfaces:
-        - member: Eth1/47
-        - member: Eth1/48
+        - member: Eth1/1
+        - member: Eth1/2
     name: PortChannel100
 sonic_system:
   anycast_address:
