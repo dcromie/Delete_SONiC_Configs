@@ -41,9 +41,9 @@ sonic_bgp_af:
 sonic_bgp_neighbors:
   - bgp_as: '{{bgp_asn}}'
     neighbors:
-      - neighbor: Eth1/56
+      - neighbor: Eth1/1
         peer_group: spine-leaf
-      - neighbor: Eth1/55
+      - neighbor: Eth1/2
         peer_group: spine-leaf
     peer_group:
       - '{{sonic_bgp_spineleaf_peergroup}}'
@@ -51,31 +51,37 @@ sonic_bgp_neighbors_af:
   - bgp_as: '{{bgp_asn}}'
     neighbors:
       - address_family: '{{sonic_bgp_fabriclink_neighbors_aflist}}'
-        neighbor: Eth1/56
+        neighbor: Eth1/1
       - address_family: '{{sonic_bgp_fabriclink_neighbors_aflist}}'
-        neighbor: Eth1/55
+        neighbor: Eth1/2
 sonic_config:
   lines: []
 sonic_interfaces:
-  - description: '"Uplink"'
+  - description: '"Uplink to NewFabric-SPINE-1 Eth1/2"'
     enabled: true
     name: Eth1/1
-  - description: '"Uplink"'
+  - description: '"Uplink to NewFabric-SPINE-2 Eth1/2"'
     enabled: true
     name: Eth1/2
   - description: '"Node-01_eth1-NDC1-25G-2"'
     enabled: true
     name: Eth1/5
-  - description: '"MCLAG to NewFabric-LEAF-1 Eth1/47"'
+  - description: '"MCLAG to NewFabric-LEAF-1 Eth1/8"'
+    enabled: true
+    name: Eth1/8
+  - description: '"MCLAG to NewFabric-LEAF-1 Eth1/9"'
+    enabled: true
+    name: Eth1/9
+  - description: '""'
     enabled: true
     name: Eth1/47
-  - description: '"MCLAG to NewFabric-LEAF-1 Eth1/48"'
+  - description: '""'
     enabled: true
     name: Eth1/48
-  - description: '"Uplink to NewFabric-SPINE-2 Eth1/2"'
+  - description: '""'
     enabled: true
     name: Eth1/55
-  - description: '"Uplink to NewFabric-SPINE-1 Eth1/2"'
+  - description: '""'
     enabled: true
     name: Eth1/56
   - description: router-id
@@ -86,11 +92,11 @@ sonic_interfaces:
     mtu: 9216
     name: PortChannel10
 sonic_l2_interfaces:
-  - name: Eth1/1
+  - name: Eth1/6
     trunk:
       allowed_vlans:
         - vlan: 200
-  - name: Eth1/2
+  - name: Eth1/7
     trunk:
       allowed_vlans:
         - vlan: 200
@@ -111,10 +117,10 @@ sonic_l2_interfaces:
 sonic_l3_interfaces:
   - ipv6:
       enabled: true
-    name: Eth1/55
+    name: Eth1/1
   - ipv6:
       enabled: true
-    name: Eth1/56
+    name: Eth1/2
   - ipv4:
       addresses:
         - address: '{{ loopback0_ip }}'
@@ -131,8 +137,8 @@ sonic_lag_interfaces:
     name: PortChannel10
   - members:
       interfaces:
-        - member: Eth1/47
-        - member: Eth1/48
+        - member: Eth1/8
+        - member: Eth1/9
     name: PortChannel100
 sonic_system:
   anycast_address:
