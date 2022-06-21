@@ -45,10 +45,10 @@
         config:
         state: deleted
     
-    - name: Create VRF
+    - name: Delete VRFs
       sonic_vrfs:
-        config: '{{sonic_vrf_interfaces}}'
-      when: sonic_vrf_interfaces is defined and sonic_vrf_interfaces
+        config:
+        state: deleted
     
     - name: delete all l3 interface
       dellemc.enterprise_sonic.sonic_l3_interfaces:
@@ -63,7 +63,7 @@
     - name: Deletes all the bgp global configurations
       dellemc.enterprise_sonic.sonic_bgp:
         config:
-        state: delete
+        state: deleted
     
     - name: "Test vxlans deleted state 02"
       dellemc.enterprise_sonic.sonic_vxlans:
