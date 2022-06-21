@@ -30,11 +30,6 @@
         config:
         state: deleted 
     
-    - name: Deletes all the VLANs on the switch
-      dellemc.enterprise_sonic.sonic_vlans:
-        config:
-        state: deleted
-    
     - name: Deletes all LAGs and LAG attributes of all interfaces
       dellemc.enterprise_sonic.sonic_lag_interfaces:
         config:
@@ -62,6 +57,11 @@
     
     - name: Deletes all the bgp global configurations
       dellemc.enterprise_sonic.sonic_bgp:
+        config:
+        state: deleted
+  
+    - name: Deletes all the VLANs on the switch
+      dellemc.enterprise_sonic.sonic_vlans:
         config:
         state: deleted
         
