@@ -24,6 +24,11 @@
       sonic_port_breakout:
         config: '{{sonic_port_breakout}}'
       when: sonic_port_breakout is defined and sonic_port_breakout
+      
+    - name: "Test vxlans deleted state 02"
+      dellemc.enterprise_sonic.sonic_vxlans:
+        config:
+        state: deleted 
     
     - name: Deletes all the VLANs on the switch
       dellemc.enterprise_sonic.sonic_vlans:
@@ -45,11 +50,6 @@
         config:
         state: deleted
     
-    - name: Delete VRFs
-      sonic_vrfs:
-        config:
-        state: deleted
-    
     - name: delete all l3 interface
       dellemc.enterprise_sonic.sonic_l3_interfaces:
         config:
@@ -65,8 +65,5 @@
         config:
         state: deleted
     
-    - name: "Test vxlans deleted state 02"
-      dellemc.enterprise_sonic.sonic_vxlans:
-        config:
-        state: deleted
+
 
