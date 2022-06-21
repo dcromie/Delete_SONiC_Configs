@@ -22,86 +22,61 @@
         src: fdc_clis_pre.j2
       register: result
 
-    - name: Configure System
-      sonic_system:
-        config: '{{sonic_system}}'
-      when: sonic_system is defined and sonic_system
+    - name: Delete all system related configs in device configuration
+      dellemc.enterprise_sonic.sonic_system:
+        config:
+        state: deleted
 
     - name: Configure Port Breakouts
       sonic_port_breakout:
         config: '{{sonic_port_breakout}}'
       when: sonic_port_breakout is defined and sonic_port_breakout
     
-    - name: Create Vlans
-      sonic_vlans:
-        config: '{{sonic_vlans}}'
-      when: sonic_vlans is defined and sonic_vlans
+    - name: Deletes all the VLANs on the switch
+      dellemc.enterprise_sonic.sonic_vlans:
+        config:
+        state: deleted
     
-    - name: Create LAG Interfaces
-      sonic_lag_interfaces:
-        config: '{{sonic_lag_interfaces}}'
-      when: sonic_lag_interfaces is defined and sonic_lag_interfaces
+    - name: Deletes all LAGs and LAG attributes of all interfaces
+      dellemc.enterprise_sonic.sonic_lag_interfaces:
+        config:
+        state: deleted
     
-    - name: Create Interfaces
-      sonic_interfaces:
-        config: '{{sonic_interfaces}}'
-      when: sonic_interfaces is defined and sonic_interfaces
+    - name: Configures interfaces
+      dellemc.enterprise_sonic.sonic_interfaces:
+        config:
+        state: deleted
     
-    - name: Create L2 Interfaces
-      sonic_l2_interfaces:
-        config: '{{sonic_l2_interfaces}}'
-      when: sonic_l2_interfaces is defined and sonic_l2_interfaces
+    - name: Configures switch port of interfaces
+      dellemc.enterprise_sonic.sonic_l2_interfaces:
+        config:
+        state: deleted
     
     - name: Create VRF
       sonic_vrfs:
         config: '{{sonic_vrf_interfaces}}'
       when: sonic_vrf_interfaces is defined and sonic_vrf_interfaces
     
-    - name: Create L3 Interfaces
-      sonic_l3_interfaces:
-        config: '{{sonic_l3_interfaces}}'
-      when: sonic_l3_interfaces is defined and sonic_l3_interfaces
+    - name: delete all l3 interface
+      dellemc.enterprise_sonic.sonic_l3_interfaces:
+        config:
+        state: deleted
     
-    - name: Create MCLAG
-      sonic_mclag:
-        config: '{{sonic_mclag}}'
-      when: sonic_mclag is defined and sonic_mclag
+    - name: Delete all device configuration
+      dellemc.enterprise_sonic.sonic_mclag:
+        config:
+        state: deleted
     
-    - name: Create BGP Configuration
-      sonic_bgp:
-        config: '{{sonic_bgp}}'
-      when: sonic_bgp is defined and sonic_bgp
+    - name: Deletes all the bgp global configurations
+      dellemc.enterprise_sonic.sonic_bgp:
+        config:
+        state: delete
     
-    - name: Create BGP AF Configuration
-      sonic_bgp_af:
-        config: '{{sonic_bgp_af}}'
-      when: sonic_bgp_af is defined and sonic_bgp_af
-    
-    - name: Create BGP Neighbors Configuration
-      sonic_bgp_neighbors:
-        config: '{{sonic_bgp_neighbors}}'
-      when: sonic_bgp_neighbors is defined and sonic_bgp_neighbors
-    
-    - name: Create BGP Neighbors AF Configuration
-      sonic_bgp_neighbors_af:
-        config: '{{sonic_bgp_neighbors_af}}'
-      when: sonic_bgp_neighbors_af is defined and sonic_bgp_neighbors_af
-    
-    - name: Create VXLANs
-      sonic_vxlans:
-        config: '{{sonic_vxlans}}'
-      when: sonic_vxlans is defined and sonic_vxlans
+    - name: "Test vxlans deleted state 02"
+      dellemc.enterprise_sonic.sonic_vxlans:
+        config:
+        state: deleted
 
-    - name: Create TACACS configuration
-      sonic_tacacs_server:
-        config: '{{sonic_tacacs_server}}'
-      when: sonic_tacacs_server is defined and sonic_tacacs_server
-
-    - name: Create AAA configuration
-      sonic_aaa:
-        config: '{{sonic_aaa}}'
-      when: sonic_aaa is defined and sonic_aaa
-    
     - name: Push Configurations For Custom CLIs
       vars:
         ansible_connection: network_cli
