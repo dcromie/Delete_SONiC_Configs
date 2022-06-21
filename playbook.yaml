@@ -15,13 +15,6 @@
     - pause:
         seconds: 30
 
-    - name: Push Configurations For Custom CLIs. pre
-      vars:
-        ansible_connection: network_cli
-      sonic_config:
-        src: fdc_clis_pre.j2
-      register: result
-
     - name: Delete all system related configs in device configuration
       dellemc.enterprise_sonic.sonic_system:
         config:
@@ -77,9 +70,3 @@
         config:
         state: deleted
 
-    - name: Push Configurations For Custom CLIs
-      vars:
-        ansible_connection: network_cli
-      sonic_config:
-        src: fdc_clis.j2
-      register: result
