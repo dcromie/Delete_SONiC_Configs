@@ -64,6 +64,13 @@
       dellemc.enterprise_sonic.sonic_bgp:
         config:
         state: deleted
-    
+        
+     - name: VRF Mgmt
+      vars:
+        ansible_connection: network_cli
+      sonic_config:
+        lines:
+          - write memory
+      register: result
 
 
