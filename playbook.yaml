@@ -39,6 +39,11 @@
       dellemc.enterprise_sonic.sonic_l2_interfaces:
         config:
         state: deleted    
+     
+    - name: Deletes all LAGs and LAG attributes of all interfaces
+      dellemc.enterprise_sonic.sonic_lag_interfaces:
+        config:
+        state: deleted
         
     - name: Configures interfaces
       dellemc.enterprise_sonic.sonic_interfaces:
