@@ -55,7 +55,7 @@
         config:
         state: deleted
     
-      - name: Deletes all the bgp global configurations
+    - name: Deletes all the bgp global configurations
       dellemc.enterprise_sonic.sonic_bgp:
         config:
         state: deleted
